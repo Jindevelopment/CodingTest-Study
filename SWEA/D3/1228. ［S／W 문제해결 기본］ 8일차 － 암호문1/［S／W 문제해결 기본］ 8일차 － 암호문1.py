@@ -4,14 +4,15 @@ for ts in range(1,11):
     num = int(input())
     x = input().split("I")
     temp = []
-
-    for i in range(1, len(x)):
-        temp.append(list(map(int, x[i].split())))
+    for i in x[1:]:
+        temp.append(list(map(int,i.strip().split())))
     
-    for i in range(num):
-        for j in range(temp[i][1]):
-            li.insert(temp[i][0]+j,temp[i][2+j])
+    for j in range(num):
+        for k in range(temp[j][1]):
+            li.insert(temp[j][0]+k,temp[j][2+k])
     
     print(f"#{ts} ",end="")
-    print(*li[:10],end=" ")
+    for z in range(10):
+        print(li[z], end = " ")
     print()
+    
