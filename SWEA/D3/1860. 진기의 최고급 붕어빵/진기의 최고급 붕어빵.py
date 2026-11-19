@@ -1,29 +1,28 @@
 T = int(input())
 
 for ts in range(1,T+1):
-    N, M, K = map(int,input().split())  # N: 손님 수 / M,K :  0 ~ M초 사이에 만들 수 있는 붕어빵의 수 K
-    li = list(map(int,input().split()))
-    li.sort()
+    N,M,K = map(int,input().split())
+    guest = list(map(int,input().split()))
+    guest.sort()
     
-    last_guest = li[-1] #제일 마지막에 온 손님
-    
-    default = "Possible"
-    
-    temp = [0] * 11111
-    for i in range(M,11111,M): # 각 초에 생성된 붕어빵의 수
-        temp[i] += K
-    
-    for k in li:
-        if sum(temp[:k+1])<=0:
-            default = "Impossible"
-            break
-        else:
-            for j in range(M,k+1):
-                if temp[j]>0:
-                    temp[j]-=1
+    li =[0] * 11112
+    for i in range(M,11112,M): # 각 초마다 붕어빵 생성
+    	li[i] = K
+    res = 1
+    for j in guest:
+        if sum(li[0:j+1])>=1:
+            for k in range(0,j+1,M):
+                if li[k]!=0:
+                    li[k]-=1
                     break
+        else:
+            res = 0
+            print(f"#{ts} Impossible")
+            break
+    if res == 1:
+        print(f"#{ts} Possible")
+                
             
     
-    print(f"#{ts} {default}")
         
-    
+    	
