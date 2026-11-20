@@ -1,13 +1,16 @@
 T = int(input())
 
-for ts in range(1, T+1):
-    word = input().strip()
+for ts in range(1,T+1):
+    word = input()
     stack = []
 
-    for char in word:
-        if stack and stack[-1] == char:
-            stack.pop()
+    for i in word:
+        if not stack:
+            stack.append(i)
         else:
-            stack.append(char)
+            if i == stack[-1]:
+                stack.pop()
+            else:
+                stack.append(i)
 
     print(f"#{ts} {len(stack)}")
